@@ -3,7 +3,6 @@
   <h1>餐廳後台</h1>
 
   <div class="row">
-
     <div class="col-md-12">
 
       <div>
@@ -15,7 +14,7 @@
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>#</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -24,9 +23,15 @@
             <th scope="row"><%= restaurant.id %></th>
             <td><%= restaurant.name %></td>
             <td>
-              <%= link_to 'Show', admin_restaurant_path(restaurant) %>
-              <%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %>
-              <%= link_to 'Delete', admin_restaurant_path(restaurant), method: :delete, data: { confirm: "Are you sure?"} %>
+              <%= link_to admin_restaurant_path(restaurant) do %>
+                <span class="glyphicon glyphicon-eye-open"></span>
+              <% end %>
+              <%= link_to edit_admin_restaurant_path(restaurant) do %>
+                <span class="glyphicon glyphicon-edit"></span>
+              <% end %>
+              <%= link_to admin_restaurant_path(restaurant), method: :delete, :data => {confirm:"Are you sure?"} do %>
+                <span class="glyphicon glyphicon-trash"></span>
+              <% end %>
             </td>
           </tr>
           <% end %>
