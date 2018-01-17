@@ -7,7 +7,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarImageUploader
 
   has_many :comments
-  
+  has_many :restaurants, through: :comments
+
   def admin?
     self.role == "admin"
   end
