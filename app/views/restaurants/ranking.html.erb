@@ -14,3 +14,32 @@
   </div>
 </div>
 <br>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-10 col-md-offset-1">
+      
+      <h1>TOP10 人氣餐廳</h1>
+      <hr>
+
+      <% @top10_restaurants.each do |restaurant| %>
+        <div class="ranking-item">
+          <div class="col-md-3">
+            <%= image_tag restaurant.image, class: "img-responsive center-block" %>
+          </div>
+          <div class="col-md-9">
+            <h4><%= restaurant.name %></h4>
+            <span class="label label-default">收藏數：<%= restaurant.favorites_count %></span>
+            <p><%= restaurant.description %></p>
+            <%= link_to 'Show', restaurant_path(restaurant), class: "btn btn-primary" %>
+            <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      <% end %>
+
+    </div>
+
+  </div>
+</div>
