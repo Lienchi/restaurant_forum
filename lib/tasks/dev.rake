@@ -10,7 +10,7 @@ namespace :dev do
         address: FFaker::Address.street_address,
         description: FFaker::Lorem.paragraph,
         category: Category.all.sample,
-        image: File.open(Rails.root.join("seed_img/#{rand(1..20)}.jpg")),
+        image: File.open(Rails.root.join("seed_img/restaurant/#{rand(1..20)}.jpg")),
         favorites_count: 0
       )
     end
@@ -28,14 +28,16 @@ namespace :dev do
       password: "12345678",
       name: "Root",
       intro: FFaker::Lorem.sentence,
-      role: "admin"
+      role: "admin",
+      avatar: File.open(Rails.root.join("seed_img/avatar/#{rand(1..10)}.png"))
     )
     20.times do |i|
       User.create!(
         email: FFaker::Internet.email,
         password: "12345678",
         name: FFaker::Name.first_name,
-        intro: FFaker::Lorem.sentence
+        intro: FFaker::Lorem.sentence,
+        avatar: File.open(Rails.root.join("seed_img/avatar/#{rand(1..10)}.png"))
       )
     end
     puts "have created admin and fake users!"
