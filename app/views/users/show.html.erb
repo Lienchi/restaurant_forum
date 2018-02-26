@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      
-      
+
       <div class="page-header">
 
         <div class="col-md-3 col-sm-4">
@@ -11,35 +10,105 @@
           </div>
         </div>
 
-
         <div class="col-md-9 col-sm-8">
           <h2><%= @user.name %></h2>
-          <p><strong><%= @user.email %></strong></p>
+          <p><%= @user.email %></p>
+
+          <ul class="list-unstyled list-inline">
+            <li><%= @commented_restaurants.count %> 已評論餐廳</li>
+            <li><%= @favorited_restaurants.count %> 收藏的餐廳</li>
+            <li><%= @followings.count %> followings</li>
+            <li><%= @followers.count %> followers</li>
+          </ul>
           <div><%= simple_format @user.intro %></div>
           <% if @user.email == current_user.email %>
             <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
           <% end %>
         </div>
         <div class="clearfix"></div>
+
       </div>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= @commented_restaurants.count %> 已評論餐廳</h3>
-        </div>
-        <div class="panel-body">
-          <% @commented_restaurants.each do |restaurant| %>
-            <%= link_to restaurant_path(restaurant) do %>
-              <div class="my-restaurant">
-                <div>
-                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
-                </div>
-                <h5><%= restaurant.name %></h5>
-              </div>
+      <br>
+
+      <div class="col-md-4">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= @followings.count %> followings</h3>
+          </div>
+
+          <ul class="list-group">
+            <% @followings.each do |following| %>
+            <li class="list-group-item">
+              <%= link_to user_path(following) do %>
+              <%= image_tag(following.avatar, height: 30, width: 30, class: "img-circle") %>
+              <%= following.name %>
+              <% end %>
+            </li>
             <% end %>
-          <% end %>
+          </ul>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= @followers.count %> followers</h3>
+          </div>
+
+          <ul class="list-group">
+            <% @followers.each do |follower| %>
+            <li class="list-group-item">
+              <%= link_to user_path(follower) do %>
+              <%= image_tag(follower.avatar, height: 30, width: 30, class: "img-circle") %>
+              <%= follower.name %>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
         </div>
       </div>
+
+      <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= @commented_restaurants.count %> 已評論餐廳</h3>
+          </div>
+          <div class="panel-body">
+            <% @commented_restaurants.each do |restaurant| %>
+            <%= link_to restaurant_path(restaurant) do %>
+            <div class="my-restaurant">
+              <div>
+                <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+              </div>
+              <h5><%= restaurant.name %></h5>
+            </div>
+            <% end %>
+
+            <% end %>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= @favorited_restaurants.count %> 收藏的餐廳</h3>
+          </div>
+
+          <div class="panel-body">
+            <% @favorited_restaurants.each do |restaurant| %>
+              <div class="my-restaurant">
+                <div>
+                  <%= link_to restaurant_path(restaurant) do %>
+                    <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+                    <h5><%= restaurant.name %></h5>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
 
     </div>
   </div>
