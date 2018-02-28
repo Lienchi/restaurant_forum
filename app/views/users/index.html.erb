@@ -31,7 +31,12 @@
           <%= image_tag user.avatar, class: "img-responsive center-block" %>
           <div class="caption">
             <h4><%= link_to user.name, user_path(user) %></h4>
-            <%= render partial: "shared/follow", locals: {user: user} %>
+            <p>
+              <%= render partial: "shared/follow", locals: {user: user} %>
+            </p>
+            <p>
+              <%= render partial: "shared/friend", locals: {user: user} %>
+            </p>
           </div>
         </div>
       <% end %>
