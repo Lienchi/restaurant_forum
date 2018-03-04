@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Friend List</h3>
+  </div>
+
+  <ul class="list-group">
+    <% @all_friends.each do |friend| %>
+    <li class="list-group-item">
+      <%= link_to user_path(friend) do %>
+      <%= image_tag(friend.avatar, height: 30, width: 30, class: "img-circle") %>
+      <%= friend.name %>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

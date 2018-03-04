@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :friend_list]
 
   def index
     @users = User.all
@@ -10,6 +10,12 @@ class UsersController < ApplicationController
     @favorited_restaurants = @user.favorited_restaurants
     @followings = @user.followings
     @followers = @user.followers
+    @friends = @user.friends
+    @inverse_friends = @user.inverse_friends
+  end
+
+  def friend_list
+    @all_friends = @user.all_friends
   end
 
   def edit
